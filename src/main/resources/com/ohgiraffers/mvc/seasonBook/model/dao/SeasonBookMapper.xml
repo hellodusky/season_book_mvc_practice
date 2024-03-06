@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ohgiraffers.mvc.seasonBook.model.dao.SeasonBookMapper">
+
+    <select id="selectedBook" resultType="com.ohgiraffers.mvc.seasonBook.model.dto.SeasonBookDTO">
+        SELECT
+            book_code,
+            season_code,
+            book_name,
+            author,
+            book_category
+        FROM
+            book
+        WHERE
+            book_code = #{ bookCode }
+    </select>
+
+    <select id="selectAllBook" resultType="com.ohgiraffers.mvc.seasonBook.model.dto.SeasonBookDTO">
+        SELECT
+            book_code,
+            season_code,
+            book_name,
+            author,
+            book_category
+        FROM
+            book
+    </select>
+
+    <insert id="insertBook">
+        INSERT
+        INTO book
+        (
+            book_name,
+            author,
+            book_category,
+            season_code
+        )
+        VALUES
+        (
+            #{ bookName },
+            #{ author },
+            #{ bookCategory },
+            #{ seasonCode }
+        )
+    </insert>
+
+    <update id="updateBook">
+        UPDATE
+            book
+        SET
+            book_name = #{ bookName }
+        WHERE
+            book_code = #{ bookCode }
+    </update>
+
+    <delete id="deleteBook">
+        DELETE
+        FROM
+            book
+        WHERE
+            book_code = #{ bookCode }
+    </delete>
+
+</mapper>
